@@ -1,0 +1,27 @@
+
+/* Шрифты из https://github.com/FontFaceKit/open-sans */
+@mixin font($style, $weight, $localName, $fileName) {
+    $url: 'config/fonts/open-sans/#{$fileName}';
+
+    @font-face {
+        font-family: 'Open Sans';
+        font-style: $style;
+        font-weight: $weight;
+        src: local($localName), local($fileName), url('#{$url}.woff2') format('woff2'), url('#{$url}.woff') format('woff'), url('#{$url}.ttf') format('truetype');
+    }
+}
+
+@include font(normal, 700, 'Open Sans Bold', 'OpenSans-Bold');
+@include font(italic, 700, 'Open Sans Bold Italic', 'OpenSans-BoldItalic');
+
+@include font(normal, 800, 'Open Sans Extra Bold', 'OpenSans-ExtraBold');
+@include font(italic, 800, 'Open Sans Extra Bold Italic', 'OpenSans-ExtraBoldItalic');
+
+@include font(normal, normal, 'Open Sans Regular', 'OpenSans-Regular');
+@include font(italic, normal, 'Open Sans Italic', 'OpenSans-Italic');
+
+@include font(normal, 300, 'Open Sans Ligth', 'OpenSans-Light');
+@include font(italic, 300, 'Open Sans Ligth Italic', 'OpenSans-LightItalic');
+
+@include font(normal, 600, 'Open Sans Semi Bolf', 'OpenSans-SemiBold');
+@include font(italic, 600, 'Open Sans Semi Bold Italic', 'OpenSans-SemiBoldItalic');

@@ -1,0 +1,43 @@
+{
+  "name": "FSK",
+  "description": "Frontend Starter Kit",
+  "author": "Studio 15",
+  "scripts": {
+    "eslint": "eslint src",
+    "dev": "gulp",
+    "dev-watch": "gulp --watch",
+    "prod": "gulp --production"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
+    "@babel/preset-stage-1": "^7.0.0-beta.40",
+    "autoprefixer": "^8.0.0",
+    "babel-loader": "^8.0.0-beta.0",
+    "css-loader": "^0.28.9",
+    "del": "^3.0.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.6",
+    "gulp": "^3.9.1",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-twig": "^1.2.0",
+    "gulp-util": "^3.0.8",
+    "imagemin-jpegoptim": "^5.2.0",
+    "imagemin-optipng": "^5.2.1",
+    "node-sass": "^4.7.2",
+    "postcss-inline-svg": "^3.0.0",
+    "postcss-loader": "^2.1.0",
+    "postcss-svgo": "^2.1.6",
+    "run-sequence": "^2.2.1",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.20.2",
+    "uglifyjs-webpack-plugin": "^1.2.0",
+    "url": "^0.11.0",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.11.0",
+    "webpack-merge": "^4.1.1"
+  },
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
+}

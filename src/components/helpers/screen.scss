@@ -1,0 +1,39 @@
+.mobile-only {
+    @media all and (min-width: 768px) {
+        display: none;
+    }
+}
+
+.tab-only {
+    @media all and (max-width: 767px) {
+        display: none;
+    }
+
+    @media all and (min-width: 1024px) {
+        display: none;
+    }
+}
+
+.desktop-only {
+    @media all and (max-width: 1023px) {
+        display: none;
+    }
+}
+
+.tab-and-desktop-only {
+    @media all and (max-width: 767px) {
+        display: none;
+    }
+}
+
+.tab-and-mobile-only {
+    @media all and (min-width: 1024px) {
+        display: none;
+    }
+}
+
+.fullhd-only {
+    @media all and (max-width: 1366px) {
+        display: none;
+    }
+}

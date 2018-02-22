@@ -1,0 +1,36 @@
+{
+  "extends": "eslint:recommended", // http://eslint.org/docs/rules/
+  "ecmaFeatures": {
+    "modules": true
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true,
+    "jquery": true
+  },
+  "rules": { // 0 - disable rule, 1 - warning, 2 - error
+    "semi": 2,
+    "no-console": 0, // консоль иногда стоит оставлять в разработке, на prod'е все равно вырезается
+    "no-alert": 0, // confirm иногда и на проде используется, нужно разрешать
+    "no-empty-function": 2,
+    "no-multi-spaces": 2,
+    "no-self-compare": 2,
+    "no-undef-init": 2,
+    "no-undefined": 2,
+    "no-use-before-define": 2,
+    "camelcase": 1,
+    "no-unneeded-ternary": 1
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  // Определяем глобальные переменные, вроде всяких библиотек, чтобы линтер на них не ругался
+  "globals" : {
+    "alertify": true
+  }
+}
