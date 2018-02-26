@@ -28,12 +28,11 @@ module.exports = {
                 test: /\.scss/,
                 use: extractSCSS.extract({
                     use: [{
-                        loader: "css-loader"
-                    }, {
-                        loader: "sass-loader"
-                    }, {
-                        loader: "postcss-loader"
-                    }]
+                        loader: "css-loader",
+                        options: {
+                            minimize: true,
+                        }
+                    }, "sass-loader", "postcss-loader"]
                 })
             }, {
                 test: /\.(jpg|jpeg|gif|png|svg)$/,
@@ -63,10 +62,13 @@ module.exports = {
             }
         ]
     },
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+            minSize: 0
+        }
+    },
     plugins: [
         extractSCSS,
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'common-chunk'
-        })
     ]
 };

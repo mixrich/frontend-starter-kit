@@ -5,6 +5,7 @@
   "scripts": {
     "eslint": "eslint src",
     "dev": "gulp",
+    "build": "gulp",
     "dev-watch": "gulp --watch",
     "prod": "gulp --production"
   },
@@ -16,7 +17,7 @@
     "babel-loader": "^8.0.0-beta.0",
     "css-loader": "^0.28.9",
     "del": "^3.0.0",
-    "extract-text-webpack-plugin": "^3.0.2",
+    "extract-text-webpack-plugin": "^4.0.0-alpha.0",
     "file-loader": "^1.1.6",
     "gulp": "^3.9.1",
     "gulp-imagemin": "^4.1.0",
@@ -31,10 +32,9 @@
     "run-sequence": "^2.2.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.2",
-    "uglifyjs-webpack-plugin": "^1.2.0",
     "url": "^0.11.0",
     "url-loader": "^0.6.2",
-    "webpack": "^3.11.0",
+    "webpack": "^4.0.0",
     "webpack-merge": "^4.1.1"
   },
   "dependencies": {
