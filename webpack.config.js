@@ -7,7 +7,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const extractSCSS = new ExtractTextPlugin('[name].css');
+const extractCSS = new ExtractTextPlugin('[name].css');
 
 module.exports = {
     entry: {
@@ -25,8 +25,18 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel-loader',
             }, {
+                test: /\.css/,
+                use: extractCSS.extract({
+                    use: [{
+                        loader: "css-loader",
+                        options: {
+                            minimize: true,
+                        }
+                    }, "postcss-loader"]
+                })
+            }, {
                 test: /\.scss/,
-                use: extractSCSS.extract({
+                use: extractCSS.extract({
                     use: [{
                         loader: "css-loader",
                         options: {
@@ -69,6 +79,6 @@ module.exports = {
         }
     },
     plugins: [
-        extractSCSS,
+        extractCSS,
     ]
 };
