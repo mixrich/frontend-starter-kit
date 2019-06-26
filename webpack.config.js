@@ -4,7 +4,6 @@
 
 
 const path = require('path');
-const webpack = require('webpack');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const extractCSS = new ExtractTextPlugin('[name].css');
@@ -72,12 +71,12 @@ module.exports = {
             }
         ]
     },
-    optimization: {
-        splitChunks: {
-            chunks: 'all',
-            minSize: 0
-        }
-    },
+    // optimization: {
+    //     splitChunks: {
+    //         chunks: 'all',
+    //         minSize: 0
+    //     }
+    // },
     plugins: [
         extractCSS,
     ]
