@@ -4,12 +4,6 @@
 
 const gulp = require('gulp');
 const gutil = require('gulp-util');
-const runSequence = require('run-sequence');
-const path = require('path');
-
-const twig = require('gulp-twig');
-
-// const browserSync = require('browser-sync').create();
 
 const IS_WATCH = process.argv.includes('--watch');
 const IS_PRODUCTION = process.argv.includes('--production');
@@ -34,20 +28,6 @@ const SETTINGS = {
     },
     server: true,
 };
-
-/**
- * Функция для ленивого вызова gulp задач.
- * @param taskName - имя задачи
- * @param path - путь до файла конфигурации задачи
- * @param options - настройки необходимый для задачи
- * @returns {Function}
- */
-function lazyRequireTasks(taskName, path, options = {}) {
-    gulp.task(taskName, function (callback) {
-        const task = require(path).call(this, options);
-        return task(callback);
-    });
-}
 
 // ==========================================================================
 // General tasks
@@ -79,13 +59,13 @@ gulp.task('webpack', function (callback) {
 
     /**
      * https://github.com/SBoudrias/gulp-istanbul/issues/22
-     * Предоставращает вызов callback более одного раза
+     * Prevents Callback calling more than once
      * @type {boolean}
      */
     let isRunninig = false;
 
     /**
-     * Пример использования из https://github.com/webpack/docs/wiki/usage-with-gulp
+     * Example from https://github.com/webpack/docs/wiki/usage-with-gulp
      */
     webpack(webpackConfig, function(err, stats) {
         if(err) throw new gutil.PluginError("webpack", err);
@@ -105,44 +85,26 @@ gulp.task('webpack', function (callback) {
 
 });
 
+gulp.task('watch-assets', () => gulp.watch(`${SETTINGS.path.src}/twig/**/*.twig`, gulp.series('twig')));
+gulp.task('watch-twig', () => gulp.watch(`${SETTINGS.path.src}/assets/**/*`, gulp.series('assets')));
+
+gulp.task('watch', gulp.parallel('watch-twig', 'watch-assets'));
+
 // ==========================================================================
 // BUILD
 // ==========================================================================
 
-gulp.task('build', function () {
-    runSequence(
-        'clean',
-        'twig',
-        'assets',
-        'webpack'
-    );
-});
-
-gulp.task('watch', function () {
-    gulp.watch(`${SETTINGS.path.src}/assets/!**!/!*`, ['assets']);
-    gulp.watch(`${SETTINGS.path.src}/twig/!**!/!*.twig`, ['twig']);
-});
-
-gulp.task('build-watch', function () {
-    runSequence(
-        'build',
-        'watch'
-    );
-});
+gulp.task('build', gulp.series(
+    'clean',
+    'twig',
+    'assets',
+    'webpack',
+));
 
 
-gulp.task('default', () => {
-    if (IS_WATCH) {
-        runSequence(
-            'build-watch'
-        );
-    } else {
-        runSequence(
-            'build'
-        );
-    }
+gulp.task('build-watch', gulp.series(
+    'build',
+    'watch',
+));
 
-});
-
-
-
+exports.default = IS_WATCH ? gulp.series('build-watch') : gulp.series('build');
